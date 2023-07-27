@@ -19,15 +19,35 @@ let images = [
     'images/tom4.png',
 ]
 
+let chars = [
+    'w',
+    'a',
+    's',
+    'd',
+    'j',
+    'k',
+    'l'
+]
+
 for(let i = 0; i < images.length; i++) {
     document.querySelectorAll('.drum')[i].style.background = `url('./${images[i]}')`;
     document.querySelectorAll('.drum').forEach((element,index) => {
         let audio = new Audio(`./${sounds[index]}`);
         element.addEventListener('click', () => {
             audio.play();
-            
         })
     });
+
+    document.querySelectorAll('.drum').forEach((element,index) => {
+        
+        element.addEventListener('keypress', (event) => {
+            let keyChar = event.key.toLowerCase();
+            let keyIndex = chars.indexOf(keyChar);
+            let audio = new Audio(`./${sounds[keyIndex]}`);
+            audio.play();
+        })
+    });
+    
     
 }
 
